@@ -37,7 +37,7 @@ const Footer = () => {
            
           </div>
 
-          {/* Contact */}
+          {/* contact info*/}
           <div>
             <h2 className="text-xl font-semibold text-white mb-5">
               Contact Information
