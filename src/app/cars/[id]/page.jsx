@@ -1,3 +1,4 @@
+import Delete from '@/components/Delete';
 import EditModal from '@/components/EditModal';
 import Image from 'next/image';
 import React from 'react';
@@ -14,6 +15,7 @@ const carsDetailsPage = async ({ params }) => {
         <div className='max-w-3xl mx-auto mt-4'>
             <div className='flex justify-end items-center gap-4 mt-5 mb-3'>
                 <EditModal car={car} />
+                <Delete car={car}/>
 
 
             </div>
