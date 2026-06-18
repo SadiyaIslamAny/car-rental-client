@@ -45,7 +45,7 @@ const Footer = () => {
 
             <div className="space-y-3 text-sm">
               <p className="flex items-center gap-2">
-                <MdEmail /> support@carrentalofficial.com
+                <MdEmail /> support@Carrentalofficial.com
               </p>
 
               <p className="flex items-center gap-2">
