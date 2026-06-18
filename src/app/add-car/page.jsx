@@ -1,6 +1,6 @@
 "use client"
 import { FieldError, Input, Label, ListBox, TextField, Select, TextArea, Button, Card } from '@heroui/react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 
 const AddCarPage = () => {
