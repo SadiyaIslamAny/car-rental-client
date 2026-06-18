@@ -68,7 +68,7 @@ const CarCard = ({ car }) => {
                             variant="ghost"
                             className="w-full border text-[#FF4C31] border-orange-600"
                         >
-                            Book
+                            Book now
                         </Button>
                     </Link>
                 </div>
