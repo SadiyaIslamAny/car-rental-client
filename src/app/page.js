@@ -1,12 +1,18 @@
 import AvailableCarsSection from "@/components/AvailableCarsSection";
 import Banner from "@/components/Banner";
-import Image from "next/image";
+import CarCategoryPage from "@/components/CarCategory";
+
+import WhyChooseUs from "@/components/WhyChooseUs";
+
 
 export default function Home() {
   return (
-   <div>
-    <Banner/>
-    <AvailableCarsSection/>
-   </div>
+    <div>
+      <Banner />
+      <AvailableCarsSection />
+      <WhyChooseUs />
+      <CarCategoryPage />
+
+    </div>
   );
 }
