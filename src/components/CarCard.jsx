@@ -56,21 +56,13 @@ const CarCard = ({ car }) => {
                     {availability}
                 </span>
 
-                <div className="grid grid-cols-2 gap-3 pt-2">
+                <div>
                     <Link href={`/cars/${_id}`} className="w-full">
                         <Button className="w-full bg-[#FF4C31] text-white">
-                            Details
+                           view details
                         </Button>
                     </Link>
 
-                    <Link href={`/cars/details/${_id}`} className="w-full">
-                        <Button
-                            variant="ghost"
-                            className="w-full border text-[#FF4C31] border-orange-600"
-                        >
-                            Book now
-                        </Button>
-                    </Link>
                 </div>
             </div>
         </div>
