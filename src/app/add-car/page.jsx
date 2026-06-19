@@ -34,7 +34,7 @@ const AddCarPage = () => {
     return (
         <div>
 
-            <Card>
+            
                 <form onSubmit={onSubmit} className="max-w-5xl mx-auto bg-white shadow-xl rounded-3xl p-6 md:p-10 space-y-8">
                     <div className="text-center">
                         <h2 className="text-3xl font-bold text-[#FF4C31]">
@@ -180,7 +180,7 @@ const AddCarPage = () => {
                     </Button>
 
                 </form>
-            </Card>
+            
 
 
         </div>

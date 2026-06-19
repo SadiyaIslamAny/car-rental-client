@@ -27,7 +27,7 @@ const RegisterPage = () => {
     });
 
     if (data) {
-      redirect("/");
+      redirect("/login");
     }
 
     if(error){
