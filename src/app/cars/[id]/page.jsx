@@ -8,18 +8,12 @@ const carsDetailsPage = async ({ params }) => {
     const { id } = await params;
     // console.log(id)
 
-    const res = await fetch(`http://localhost:5000/car/${id}`)
+    const res = await fetch(`http://localhost:5000/cars/${id}`)
     const car = await res.json()
     console.log(car)
-    const { imageUrl, carName, dailyRentPrice, availability, description, carType,seatCapacity } = car;
+    const { imageUrl, carName, dailyRentPrice, availability, description, carType, seatCapacity, } = car;
     return (
-        <div className='max-w-3xl mx-auto mt-4'>
-            <div className='flex justify-end items-center gap-4 mt-5 mb-3'>
-                <EditModal car={car} />
-                <Delete car={car} />
-
-
-            </div>
+        <div className='max-w-xl mx-auto mt-4'>
             <div className=" border mt-8 rounded-2xl space-y-8">
                 <div className="rounded-xl overflow-hidden shadow-lg">
                     <Image
@@ -70,21 +64,23 @@ const carsDetailsPage = async ({ params }) => {
                             {description}
                         </p>
                     </div>
+
                     <div className="flex justify-end pt-4">
-                            <button
-                                disabled={availability !== "Available"}
-                                className={`px-6 py-2 rounded-lg text-white transition ${availability === "Available"
-                                    ? "bg-[#FF4C31] hover:bg-red-600"
-                                    : "bg-gray-400 cursor-not-allowed"
-                                    }`}
-                            >
-                                Book Now
-                            </button>
+                        <button
+                            disabled={availability !== "Available"}
+                            className={`px-6 py-2 rounded-lg w-full text-white transition ${availability === "Available"
+                                ? "bg-[#FF4C31] hover:bg-red-600"
+                                : "bg-[#FF4C31] cursor-not-allowed"
+                                }`}
+                        >
+                            Book Now
+                        </button>
                     </div>
                 </div>
-
             </div>
+
         </div>
+
     );
 };
 

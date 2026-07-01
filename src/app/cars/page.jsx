@@ -1,7 +1,7 @@
 import CarCard from "@/components/CarCard";
 
 const exploreCarsPage = async () => {
-    const res = await fetch("http://localhost:5000/car")
+    const res = await fetch("http://localhost:5000/cars")
     const cars = await res.json();
     console.log(cars)
 

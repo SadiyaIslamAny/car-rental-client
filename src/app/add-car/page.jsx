@@ -12,7 +12,7 @@ const AddCarPage = () => {
           console.log(car)
 
 
-           const res = await  fetch("http://localhost:5000/car",{
+           const res = await  fetch("http://localhost:5000/cars",{
             method: 'POST',
             headers:{
                 'Content-type': 'application/json'

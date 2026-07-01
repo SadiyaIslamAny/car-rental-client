@@ -3,6 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaCarSide, FaUsers } from "react-icons/fa";
 import { LuMapPin } from "react-icons/lu";
+import EditModal from "./EditModal";
+import Delete from '@/components/Delete';
+
 
 const CarCard = ({ car }) => {
     const { _id, imageUrl, carName, dailyRentPrice, carType, seatCapacity, pickupLocation, availability, } = car;
@@ -49,21 +52,27 @@ const CarCard = ({ car }) => {
 
                 <span
                     className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${availability === "Available"
-                            ? "bg-green-100 text-green-700"
-                            : "bg-red-100 text-red-600"
+                        ? "bg-green-100 text-green-700"
+                        : "bg-red-100 text-red-600"
                         }`}
                 >
                     {availability}
                 </span>
 
+
+                <div className='flex justify-between items-center gap-4 mt-5 mb-3'>
+                    <EditModal car={car} />
+                    <Delete car={car} />
+                </div>
                 <div>
                     <Link href={`/cars/${_id}`} className="w-full">
-                        <Button className="w-full bg-[#FF4C31] text-white">
-                           view details
+                        <Button className="w-full bg-[#FF4C31] text-white rounded-xl">
+                            view details
                         </Button>
                     </Link>
 
                 </div>
+
             </div>
         </div>
     );

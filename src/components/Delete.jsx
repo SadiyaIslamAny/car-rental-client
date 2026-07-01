@@ -31,7 +31,7 @@ const Delete = ({ car }) => {
   return (
     <AlertDialog>
       <AlertDialog.Trigger>
-        <Button variant="outline" className="text-rose-500 rounded-none">
+        <Button variant="outline" className="text-rose-500 rounded-xl">
           <TrashBin />
           Delete
         </Button>

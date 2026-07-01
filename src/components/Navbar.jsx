@@ -107,7 +107,7 @@ const Navbar = () => {
                       My Bookings
                     </Link>
 
-                    <Link href="/my-cars" className="block px-4 py-2 hover:bg-gray-100">
+                    <Link href="/my-added-cars" className="block px-4 py-2 hover:bg-gray-100">
                       My Added Cars
                     </Link>
 

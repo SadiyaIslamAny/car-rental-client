@@ -28,7 +28,7 @@ const { _id, imageUrl, carName, dailyRentPrice, carType, seatCapacity, pickupLoc
     return (
 
         <Modal>
-  <Button variant="outline" className="rounded-none">
+  <Button variant="outline" className="rounded-xl p-4">
     <BiEdit /> Update
   </Button>
 
