@@ -1,87 +1,172 @@
-import Delete from '@/components/Delete';
-import EditModal from '@/components/EditModal';
-import Image from 'next/image';
-import React from 'react';
-import { FaCarSide, FaUsers } from 'react-icons/fa';
+import BookingCard from "@/components/BookingCard";
+import Image from "next/image";
+import {
+  FaCarSide,
+  FaUsers,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 
-const carsDetailsPage = async ({ params }) => {
-    const { id } = await params;
-    // console.log(id)
+const CarsDetailsPage = async ({ params }) => {
+  const { id } = await params;
 
-    const res = await fetch(`http://localhost:5000/cars/${id}`)
-    const car = await res.json()
-    console.log(car)
-    const { imageUrl, carName, dailyRentPrice, availability, description, carType, seatCapacity, } = car;
-    return (
-        <div className='max-w-xl mx-auto mt-4'>
-            <div className=" border mt-8 rounded-2xl space-y-8">
-                <div className="rounded-xl overflow-hidden shadow-lg">
-                    <Image
-                        src={imageUrl}
-                        alt={carName}
-                        width={800}
-                        height={400}
-                        className=" object-cover mx-auto"
-                    />
-                </div>
+  const res = await fetch(`http://localhost:5000/cars/${id}`, {
+    cache: "no-store",
+  });
 
-                <div className="space-y-2 px-4 mb-5">
+  const car = await res.json();
 
+  const {
+    imageUrl,
+    carName,
+    dailyRentPrice,
+    availability,
+    description,
+    carType,
+    seatCapacity,
+    pickupLocation,
+    
+  } = car;
 
-                    <span
-                        className={`inline-block px-4 py-1 rounded-full text-sm font-medium ${availability === "Available"
-                            ? "bg-green-100 text-green-700"
-                            : "bg-red-100 text-red-600"
-                            }`}
-                    >
-                        {availability}
-                    </span>
-                    <div className='flex justify-between items-center'>
-                        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800">
-                            {carName}
-                        </h1>
+  return (
+    <section className="bg-[#f8f7f4] min-h-screen py-14 px-5">
+      <div className="max-w-7xl mx-auto">
 
-                        <h2 className="text-xl sm:text-2xl font-semibold text-[#FF4C31]">
-                            ${dailyRentPrice}{" "}
-                        </h2>
-                    </div>
-                    <div className="flex items-center gap-1 text-sm text-gray-500">
-                        <FaCarSide />
-                        <span>{carType}</span>
-                    </div>
+        <div className="grid lg:grid-cols-2 gap-10 items-start">
 
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                        <FaUsers />
-                        <span>{seatCapacity} Seats</span>
-                    </div>
+          {/* Left Image Card */}
 
-                    <div className="pt-4">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                            Description:
-                        </h3>
+          <div className="bg-white rounded-[35px] shadow-xl border p-6">
 
-                        <p className="text-gray-600 leading-relaxed">
-                            {description}
-                        </p>
-                    </div>
+            <div className="overflow-hidden rounded-[25px]">
 
-                    <div className="flex justify-end pt-4">
-                        <button
-                            disabled={availability !== "Available"}
-                            className={`px-6 py-2 rounded-lg w-full text-white transition ${availability === "Available"
-                                ? "bg-[#FF4C31] hover:bg-red-600"
-                                : "bg-[#FF4C31] cursor-not-allowed"
-                                }`}
-                        >
-                            Book Now
-                        </button>
-                    </div>
-                </div>
+              <Image
+                src={imageUrl}
+                alt={carName}
+                width={800}
+                height={700}
+                priority
+                className="w-full h-[500px] object-cover transition duration-500 hover:scale-105"
+              />
+
             </div>
+
+          </div>
+
+          {/* Right Details Card */}
+
+          <div className="bg-white rounded-[35px] shadow-xl border p-8">
+
+            <p className="uppercase text-xs tracking-[5px] text-gray-400 font-semibold">
+              {carType}
+            </p>
+
+            <h1 className="text-5xl font-black text-gray-900 mt-3">
+              {carName}
+            </h1>
+
+            <div className="mt-5 flex items-end gap-2">
+
+              <h2 className="text-5xl font-extrabold text-black">
+                ${dailyRentPrice}
+              </h2>
+
+              <span className="text-lg text-gray-500 mb-2">
+                / day
+              </span>
+
+            </div>
+
+            <p className="text-gray-500 leading-8 mt-6">
+              {description}
+            </p>
+
+            {/* Information */}
+
+            <div className="space-y-4 mt-10">
+
+              <div className="bg-gray-100 rounded-xl p-4 flex items-center gap-4">
+
+                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-gray-700">
+                  <FaCarSide />
+                </div>
+
+                <div>
+                  <p className="text-xs text-gray-400">Car Type</p>
+                  <h3 className="font-semibold">{carType}</h3>
+                </div>
+
+              </div>
+
+              <div className="bg-gray-100 rounded-xl p-4 flex items-center gap-4">
+
+                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-gray-700">
+                  <FaUsers />
+                </div>
+
+                <div>
+                  <p className="text-xs text-gray-400">Seat Capacity</p>
+                  <h3 className="font-semibold">
+                    {seatCapacity} Seats
+                  </h3>
+                </div>
+
+              </div>
+
+              <div className="bg-gray-100 rounded-xl p-4 flex items-center gap-4">
+
+                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-gray-700">
+                  <FaMapMarkerAlt />
+                </div>
+
+                <div>
+                  <p className="text-xs text-gray-400">Pickup Location</p>
+                  <h3 className="font-semibold">
+                    {pickupLocation}
+                  </h3>
+                </div>
+
+              </div>
+
+
+            </div>
+
+            {/* Status */}
+
+            <div className="mt-10 bg-black rounded-2xl p-6">
+
+              <p className="uppercase text-xs tracking-[4px] text-gray-400">
+                Status
+              </p>
+
+              <div className="flex items-center gap-3 mt-3">
+
+                <h2
+                  className={`text-3xl font-bold ${
+                    availability === "Available"
+                      ? "text-white"
+                      : "text-red-600"
+                  }`}
+                >
+                  {availability}
+                </h2>
+
+              </div>
+
+            </div>
+
+            {/* Button */}
+            <div className="">
+               <BookingCard car={car} />
+            </div>
+             
+
+          </div>
 
         </div>
 
-    );
+      </div>
+    </section>
+  );
 };
 
-export default carsDetailsPage;
+export default CarsDetailsPage;

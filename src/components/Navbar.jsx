@@ -10,7 +10,6 @@ import { authClient } from "@/lib/auth-client";
 const Navbar = () => {
   const { data: session } = authClient.useSession();
 
-  // 👉 real user from session
   const user = session?.user || null;
   console.log(user)
 
