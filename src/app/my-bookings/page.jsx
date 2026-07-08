@@ -17,11 +17,24 @@ const MyBookingPage = async () => {
   const bookings = await res.json();
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center md:text-left">
-        My Bookings
-      </h1>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center md:text-left">
+      My Bookings
+    </h1>
 
+    {bookings.length === 0 ? (
+      <div className="flex flex-col items-center justify-center py-24 border-2 border-dashed border-gray-300 rounded-3xl bg-gray-50">
+        <div className="text-6xl mb-4">🚗</div>
+
+        <h2 className="text-2xl font-bold text-gray-800">
+          No Bookings Yet
+        </h2>
+
+        <p className="text-gray-500 mt-2 text-center max-w-md">
+           No bookings found. Explore our available cars and make your first booking to get started.
+        </p>
+      </div>
+    ) : (
       <div className="space-y-6">
         {bookings.map((booking) => (
           <div
@@ -43,7 +56,6 @@ const MyBookingPage = async () => {
                   {booking.carName}
                 </h2>
 
-                {/* Location */}
                 <div className="flex items-center justify-center sm:justify-start gap-2 mt-2">
                   <IoLocationOutline className="text-gray-600" />
                   <p className="text-sm text-gray-700">
@@ -51,7 +63,6 @@ const MyBookingPage = async () => {
                   </p>
                 </div>
 
-                {/* Date */}
                 <div className="flex items-center justify-center sm:justify-start gap-2 mt-2">
                   <SlCalender size={14} className="text-gray-600" />
                   <p className="text-sm text-gray-700">
@@ -65,7 +76,6 @@ const MyBookingPage = async () => {
               </div>
             </div>
 
-            {/* Price */}
             <div className="flex justify-center lg:justify-end">
               <div className="bg-[#FF4C31] text-white px-6 py-3 rounded-xl font-bold text-lg w-full sm:w-auto text-center">
                 ${booking.dailyRentPrice}
@@ -74,7 +84,8 @@ const MyBookingPage = async () => {
           </div>
         ))}
       </div>
-    </div>
+    )}
+  </div>
   );
 };
 
