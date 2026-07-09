@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { TrashBin } from "@gravity-ui/icons";
 import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
@@ -9,9 +10,14 @@ const Delete = ({ car }) => {
   const router = useRouter();
 
   const handleDelete = async () => {
+    const { data: tokenData } = await authClient.token()
     try {
-      const res = await fetch(`http://localhost:5000/car/${_id}`, {
+      const res = await fetch(`http://localhost:5000/cars/${_id}`, {
         method: "DELETE",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`
+        },
       });
 
       if (!res.ok) {

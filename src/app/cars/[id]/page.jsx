@@ -1,4 +1,6 @@
 import BookingCard from "@/components/BookingCard";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 import Image from "next/image";
 import {
   FaCarSide,
@@ -8,9 +10,16 @@ import {
 
 const CarsDetailsPage = async ({ params }) => {
   const { id } = await params;
+  const {token} = await auth.api.getToken({
+    headers: await headers()
+  })
 
+  console.log(token)
   const res = await fetch(`http://localhost:5000/cars/${id}`, {
     cache: "no-store",
+    headers:{
+      authorization : `Bearer ${token}`
+    }
   });
 
   const car = await res.json();

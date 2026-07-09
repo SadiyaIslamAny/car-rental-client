@@ -1,4 +1,5 @@
 "use client"
+import { authClient } from '@/lib/auth-client';
 import { FieldError, Input, Label, ListBox, TextField, Select, TextArea, Button, Card } from '@heroui/react';
 import { useRouter } from 'next/navigation';
 
@@ -11,11 +12,12 @@ const AddCarPage = () => {
           const car = Object.fromEntries(formData.entries())
           console.log(car)
 
-
+         const {data: tokenData} = await authClient.token()
            const res = await  fetch("http://localhost:5000/cars",{
             method: 'POST',
             headers:{
-                'Content-type': 'application/json'
+                'Content-type': 'application/json',
+                authorization: `Bearer ${tokenData?.token}`
             },
             body: JSON.stringify(car)
           })
@@ -25,7 +27,7 @@ const AddCarPage = () => {
 
         if (data.insertedId) { 
             alert("Car Added Successfully!"); 
-             router.push("/cars");
+             router.push("/my-added-cars");
              }
     }
 

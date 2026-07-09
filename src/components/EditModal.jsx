@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { Button, FieldError, Input, Label, ListBox, Modal, Surface, TextArea, TextField, Select } from "@heroui/react";
 import { BiEdit } from "react-icons/bi";
 
@@ -12,12 +13,12 @@ const { _id, imageUrl, carName, dailyRentPrice, carType, seatCapacity, pickupLoc
           e.preventDefault()
           const formData = new FormData(e.currentTarget)
           const car = Object.fromEntries(formData.entries())
-          console.log(car)
-
-        const res = await fetch(`http://localhost:5000/car/${_id}`, {
+         const { data: tokenData } = await authClient.token()
+        const res = await fetch(`http://localhost:5000/cars/${_id}`, {
             method: 'PATCH',
             headers: {
-                'Content-type': 'application/json'
+                'Content-type': 'application/json',
+                  authorization: `Bearer ${tokenData?.token}`
             },
             body: JSON.stringify(car)
         })

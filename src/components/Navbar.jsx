@@ -11,7 +11,7 @@ const Navbar = () => {
   const { data: session } = authClient.useSession();
 
   const user = session?.user || null;
-  console.log(user)
+  
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);

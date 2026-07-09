@@ -7,6 +7,7 @@ import { AlertDialog, Button } from "@heroui/react";
 export function BookingCancelAlert({ bookingId }) {
 
     const handleCancelBooking = async () => {
+        const { data: tokenData } = await authClient.token()
         try {
             const res = await fetch(
                 `http://localhost:5000/booking/${bookingId}`,
@@ -14,6 +15,7 @@ export function BookingCancelAlert({ bookingId }) {
                     method: "DELETE",
                     headers: {
                         "content-type": "application/json",
+                        authorization: `Bearer ${tokenData?.token}`
                     },
                 }
             );
@@ -29,8 +31,8 @@ export function BookingCancelAlert({ bookingId }) {
 
     return (
         <AlertDialog>
-            <Button 
-                className="rounded-none border-red-400 text-red-500" 
+            <Button
+                className="rounded-none border-red-400 text-red-500"
                 variant="outline"
             >
                 <TrashBin />
@@ -58,9 +60,9 @@ export function BookingCancelAlert({ bookingId }) {
                                 Cancel
                             </Button>
 
-                            <Button 
-                                onClick={handleCancelBooking} 
-                                slot="close" 
+                            <Button
+                                onClick={handleCancelBooking}
+                                slot="close"
                                 variant="danger"
                             >
                                 Delete
