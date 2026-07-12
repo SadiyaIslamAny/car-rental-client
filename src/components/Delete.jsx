@@ -10,13 +10,13 @@ const Delete = ({ car }) => {
   const router = useRouter();
 
   const handleDelete = async () => {
-    const { data: tokenData } = await authClient.token()
+    const { data: tokenData } = await authClient.token();
     try {
-      const res = await fetch(`http://localhost:5000/cars/${_id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars/${_id}`, {
         method: "DELETE",
         headers: {
           "content-type": "application/json",
-          authorization: `Bearer ${tokenData?.token}`
+          authorization: `Bearer ${tokenData?.token}`,
         },
       });
 
@@ -50,15 +50,13 @@ const Delete = ({ car }) => {
 
             <AlertDialog.Header>
               <AlertDialog.Icon status="danger" />
-              <AlertDialog.Heading>
-                Delete car permanently?
-              </AlertDialog.Heading>
+              <AlertDialog.Heading>Delete car permanently?</AlertDialog.Heading>
             </AlertDialog.Header>
 
             <AlertDialog.Body>
               <p>
-                This will permanently delete <strong>{carName}</strong> and all
-                of its data. This action cannot be undone.
+                This will permanently delete <strong>{carName}</strong> and all of its data. This
+                action cannot be undone.
               </p>
             </AlertDialog.Body>
 
@@ -67,11 +65,7 @@ const Delete = ({ car }) => {
                 Cancel
               </Button>
 
-              <Button
-                onClick={handleDelete}
-                slot="close"
-                variant="danger"
-              >
+              <Button onClick={handleDelete} slot="close" variant="danger">
                 Delete
               </Button>
             </AlertDialog.Footer>
